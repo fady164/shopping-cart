@@ -6,11 +6,14 @@ export default function Filter({
    size,
    handleFilterByOrder,
    sort,
+   productNumber,
 }) {
    return (
       <div className="filter-wrapper">
          <h2 className="filter-title">Filter</h2>
-         <div className="num-of-products">Number of product 4</div>
+         <div className="num-of-products">
+            Number of product {productNumber}
+         </div>
          <div className="filter-by-size">
             <span>Filter</span>
             <select
