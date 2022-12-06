@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../css/Products/Products.css";
 import ProductModal from "../ProductModal/ProductModal";
 
-export default function Products({ products }) {
+export default function Products({ products, addToCart }) {
    const [product, setProduct] = useState("");
    const openModal = (product) => {
       setProduct(product);
@@ -22,7 +22,13 @@ export default function Products({ products }) {
                   <p>{product.title}</p>
                   <span>${product.price}</span>
                </div>
-               <button>add to cart</button>
+               <button
+                  onClick={() => {
+                     addToCart(product);
+                  }}
+               >
+                  add to cart
+               </button>
             </div>
          ))}
          <ProductModal product={product} closeModal={closeModal} />
