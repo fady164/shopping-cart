@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Products from "./components/Products/Products";
 import Filter from "./components/Filter/Filter";
 import Cart from "./components/Cart/Cart";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
    const [products, setProducts] = useState(data);
@@ -69,23 +71,25 @@ function App() {
    }, [cartItems]);
 
    return (
-      <div className="layout">
-         <Header />
-         <main>
-            <div className="wrapper">
-               <Products addToCart={addToCart} products={products} />
-               <Filter
-                  productNumber={products.length}
-                  size={size}
-                  sort={sort}
-                  handleFilterBySize={handleFilterBySize}
-                  handleFilterByOrder={handleFilterByOrder}
-               />
-            </div>
-            <Cart removeFromCart={removeFromCart} cartItems={cartItems} />
-         </main>
-         <Footer />
-      </div>
+      <Provider store={store}>
+         <div className="layout">
+            <Header />
+            <main>
+               <div className="wrapper">
+                  <Products addToCart={addToCart} products={products} />
+                  <Filter
+                     productNumber={products.length}
+                     size={size}
+                     sort={sort}
+                     handleFilterBySize={handleFilterBySize}
+                     handleFilterByOrder={handleFilterByOrder}
+                  />
+               </div>
+               <Cart removeFromCart={removeFromCart} cartItems={cartItems} />
+            </main>
+            <Footer />
+         </div>
+      </Provider>
    );
 }
 
